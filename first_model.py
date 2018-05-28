@@ -74,3 +74,31 @@ print(X.head(),'\n')
 print("The predictions are")
 print(data_model.predict(X.head()))
 
+# Calculating mean absolute error
+from sklearn.metrics import mean_absolute_error
+
+predicted_sale_prices = data_model.predict(X)
+# in-sample score
+avrg_error = mean_absolute_error(y, predicted_sale_prices)
+print("The mean absolute error is",avrg_error)
+
+
+# Validation data (train/make predictions on new data)
+from sklearn.model_selection import train_test_split
+# split data into training and validation data, for both predictors and target
+# The split is based on a random number generator. Supplying a numeric value to
+# the random_state argument guarantees we get the same split every time we
+# run this script.
+train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
+
+# Define model
+data_model = DecisionTreeRegressor()
+# Fit model
+data_model.fit(train_X, train_y)
+
+# Get predicited price on validation data
+val_predictions = data_model.predict(val_X)
+avrg_error = mean_absolute_error(val_y, val_predictions)
+print("The mean absolute error for validation test is",avrg_error)
+
+

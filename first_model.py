@@ -80,7 +80,8 @@ from sklearn.metrics import mean_absolute_error
 predicted_sale_prices = data_model.predict(X)
 # in-sample score
 avrg_error = mean_absolute_error(y, predicted_sale_prices)
-print("The mean absolute error is",avrg_error)
+print("The Mean Absolute Error for Decision Tree none-validation:",avrg_error)
+# issue with DecisionTree none-validation is the model will fail on new data sets
 
 
 # Validation data (train/make predictions on new data)
@@ -99,7 +100,7 @@ data_model.fit(train_X, train_y)
 # Get predicited price on validation data
 val_predictions = data_model.predict(val_X)
 avrg_error = mean_absolute_error(val_y, val_predictions)
-print("The mean absolute error for validation test is",avrg_error)
+print("The Mean Absolute Error for Decision Tree Validation:",avrg_error)
 print('\n')
 
 # ********************************************
@@ -119,3 +120,16 @@ for max_leaf_nodes in [5, 50, 500 , 5000]:
 	my_mae = get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y)
 	print("Max leaf nodes: %d \t\t Mean Absolute Error: %d" %(max_leaf_nodes,my_mae))
 
+# ********************************************
+#				RANDOM FOREST TREE
+#		More powerful than Decision Tree
+# ********************************************
+
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_absolute_error
+
+forest_model = RandomForestRegressor()
+forest_model.fit(train_X, train_y)
+melb_preds = forest_model.predict(val_X)
+avrg_error = mean_absolute_error(val_y,melb_preds)
+print("Mean Absolute error for Random Forest Regressor: ",avrg_error)

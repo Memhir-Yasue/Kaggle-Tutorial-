@@ -13,10 +13,8 @@ data = pd.read_csv(main_file_path)
 print(data.describe())
 
 # *********************************
-# ********************************
-
-
-# Selecting and Filtering Data
+#  Selecting and Filtering Data in Pandas
+# *********************************
 
 
 # List of all columns/features
@@ -38,6 +36,7 @@ two_columns_summary = two_columns_of_data.describe()
 print(two_columns_summary)
 
 # ********************************************
+#		Sckikit-Learn Model
 # ********************************************
 
 # Building model #
@@ -58,6 +57,11 @@ X = data[data_predictors]
 # Predict: Just what it sounds like
 # Evaluate: Determine how accurate the model's predictions are.
 
+#***************************************************
+#				Model Validation
+#***************************************************
+
+
 from sklearn.tree import DecisionTreeRegressor 
 
 # Define model
@@ -73,6 +77,8 @@ print("Making predictions for the first 5 houses")
 print(X.head(),'\n')
 print("The predictions are")
 print(data_model.predict(X.head()))
+
+
 
 # Calculating mean absolute error
 from sklearn.metrics import mean_absolute_error
@@ -104,6 +110,9 @@ print("The Mean Absolute Error for Decision Tree Validation:",avrg_error)
 print('\n')
 
 # ********************************************
+#
+#  Underfitting, Overfitting and Model Optimization
+#
 # ********************************************
 from sklearn.metrics import mean_absolute_error
 from sklearn.tree import DecisionTreeRegressor

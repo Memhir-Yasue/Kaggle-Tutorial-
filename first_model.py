@@ -47,7 +47,7 @@ y = data.SalePrice
 # loading predictors
 #fireplace, fullbath, yearbuilt
 
-data_predictors = ['YearBuilt','FullBath','Fireplaces']
+data_predictors = ['YearBuilt','FullBath','LotArea']
 
 X = data[data_predictors]
 
@@ -142,3 +142,11 @@ forest_model.fit(train_X, train_y)
 melb_preds = forest_model.predict(val_X)
 avrg_error = mean_absolute_error(val_y,melb_preds)
 print("Mean Absolute error for Random Forest Regressor: ",avrg_error)
+
+#*************************************************
+#
+#				Test Data and Kaggle Submission
+#
+#*************************************************
+
+# See first_model_submission.py
